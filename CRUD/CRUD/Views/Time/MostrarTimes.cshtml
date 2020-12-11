@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CRUD.Models.Times>
+
+<h4>Mostrar Times</h4>
+<p>
+    @Html.ActionLink("Adicionar Novo Time", "AdicionarTime")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Nome")
+        </th>
+        <th>
+            @Html.Label("Cores")
+        </th>
+        <th>
+            @Html.Label("Estado")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.cd_time)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nm_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nm_cores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sg_estado)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarTime", new { id = item.cd_time }) |
+                @Html.ActionLink("Delete", "ExcluirTime", new { id = item.cd_time }, new { onclick = "return  confirm('Tem certeza que deseja excluir?');" })
+            </td>
+        </tr>
+    }
+
+    <script src="~/scripts/bootstrap.js"></script>
+    <script src="~/scripts/jquery.slim.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+</table>
